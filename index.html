@@ -78,9 +78,9 @@
   .proj span{font-size:19px;color:var(--muted);line-height:1.15}
 
   /* ----- dialog ----- */
-  #denied{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45)}
-  #denied.open{display:flex}
-  #denied .window{max-width:340px}
+  #denied,#dnc{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45)}
+  #denied.open,#dnc.open{display:flex}
+  #denied .window,#dnc .window{max-width:340px}
   .dlg-body{display:flex;gap:14px;align-items:center;padding:18px 16px;font-size:21px}
   .dlg-body svg{flex-shrink:0}
   .dlg-btns{display:flex;justify-content:center;gap:10px;padding:0 0 14px}
@@ -174,7 +174,7 @@
   .sw-grid button.open{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2722%27%20height%3D%2734%27%20viewBox%3D%270%200%2011%2017%27%20shape-rendering%3D%27crispEdges%27%3E%3Cpath%20d%3D%27M0%200h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%201h2v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%202h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%202h1v1H1z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M2%202h1v1H2z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%203h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%203h2v1H1z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M3%203h1v1H3z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%204h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%204h3v1H1z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M4%204h1v1H4z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%205h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%205h4v1H1z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M5%205h1v1H5z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%206h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%206h5v1H1z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M6%206h1v1H6z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%207h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%207h6v1H1z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M7%207h1v1H7z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%208h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%208h7v1H1z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M8%208h1v1H8z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%209h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%209h8v1H1z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M9%209h1v1H9z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%2010h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%2010h5v1H1z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M6%2010h5v1H6z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%2011h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%2011h2v1H1z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M3%2011h1v1H3z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M4%2011h2v1H4z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M6%2011h1v1H6z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%2012h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%2012h1v1H1z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M2%2012h1v1H2z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M4%2012h1v1H4z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M5%2012h2v1H5z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M7%2012h1v1H7z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%2013h2v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M4%2013h1v1H4z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M5%2013h2v1H5z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M7%2013h1v1H7z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%2014h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M5%2014h1v1H5z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M6%2014h2v1H6z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M8%2014h1v1H8z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M5%2015h1v1H5z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M6%2015h2v1H6z%27%20fill%3D%27%23ece0ef%27%2F%3E%3Cpath%20d%3D%27M8%2015h1v1H8z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M6%2016h2v1H6z%27%20fill%3D%27%23000000%27%2F%3E%3C%2Fsvg%3E") 0 0, auto !important}
   .window.draggable .titlebar{cursor:move}
   #boot,#boot *{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2718%27%20height%3D%2726%27%20viewBox%3D%270%200%209%2013%27%20shape-rendering%3D%27crispEdges%27%3E%3Cpath%20d%3D%27M0%200h9v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%201h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%201h7v1H1z%27%20fill%3D%27%23c4b2cf%27%2F%3E%3Cpath%20d%3D%27M8%201h1v1H8z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%202h1v1H1z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M2%202h5v1H2z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M7%202h1v1H7z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%203h1v1H1z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M2%203h5v1H2z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M7%203h1v1H7z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M2%204h1v1H2z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M3%204h3v1H3z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M6%204h1v1H6z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M3%205h1v1H3z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M4%205h1v1H4z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M5%205h1v1H5z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M4%206h1v1H4z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M3%207h1v1H3z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M5%207h1v1H5z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M2%208h1v1H2z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M4%208h1v1H4z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M6%208h1v1H6z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%209h1v1H1z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M3%209h3v1H3z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M7%209h1v1H7z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%2010h1v1H1z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M2%2010h5v1H2z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M7%2010h1v1H7z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%2011h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%2011h7v1H1z%27%20fill%3D%27%23c4b2cf%27%2F%3E%3Cpath%20d%3D%27M8%2011h1v1H8z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%2012h9v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3C%2Fsvg%3E") 9 12, wait !important}
-  .desk-icons{position:fixed;top:18px;left:14px;z-index:2;display:flex;flex-direction:column;gap:14px}
+  .desk-icons{position:fixed;top:14px;left:14px;z-index:2;display:flex;flex-direction:column;flex-wrap:wrap;align-content:flex-start;gap:10px 6px;max-height:calc(100vh - 64px)}
   /* ----- typer ----- */
   #win-typer{max-width:460px}
   .ty-panel{gap:12px;padding:16px}
@@ -247,6 +247,23 @@
   .rn-runes::placeholder{color:#7a5a8a}
   .rn-mid{text-align:center;font-size:22px;color:var(--accent)}
   .rn-btns{display:flex;gap:10px;justify-content:center;margin-top:6px}
+  /* ----- do_not_click error pop-ups ----- */
+  #err-layer{position:fixed;inset:0;z-index:9900;pointer-events:none}
+  .err-pop{position:absolute;width:300px;max-width:calc(100vw - 20px);pointer-events:auto;animation:errpop .12s steps(2)}
+  .err-pop .titlebar{background:#5c0a1c}
+  .err-pop .dlg-body{font-size:20px;padding:14px}
+  .err-pop .dlg-btns{padding:0 0 12px}
+  @keyframes errpop{from{transform:scale(.8)}to{transform:scale(1)}}
+  @media (prefers-reduced-motion:reduce){.err-pop{animation:none}}
+  /* ----- message_cai ----- */
+  #win-msg{max-width:440px}
+  .msg-panel{gap:8px;padding:16px}
+  .msg-note{font-size:18px;color:var(--accent);line-height:1.15}
+  .msg-in{font-size:22px}
+  textarea.msg-in{min-height:120px;resize:vertical}
+  .msg-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .msg-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px}
+  .msg-count{font-size:18px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -270,6 +287,10 @@
   <svg width="40" height="44" viewBox="0 0 20 22" aria-hidden="true"><rect x="1" y="1" width="18" height="20" fill="#1a1220" stroke="#000"/><rect x="2" y="2" width="16" height="4" fill="#4a1a63"/><rect x="4" y="8" width="6" height="6" fill="#c4b2cf"/><path d="M12 9h5M12 11h4M4 16h13M4 18h10" stroke="#e58ad6"/></svg>
   <span>about_me</span>
 </button>
+<button type="button" class="desk-icon" data-open="win-msg" aria-label="Open pigeon.exe">
+  <svg width="44" height="40" viewBox="0 0 22 20" aria-hidden="true"><rect x="1" y="4" width="20" height="14" fill="#c4b2cf" stroke="#000"/><path d="M1 4l10 8 10-8" fill="none" stroke="#000"/></svg>
+  <span>pigeon.exe</span>
+</button>
 <button type="button" class="desk-icon" data-open="win-projects" aria-label="Open projects">
   <svg width="44" height="40" viewBox="0 0 22 20" aria-hidden="true"><path d="M1 3h7l2 2h11v14H1z" fill="#c4b2cf" stroke="#000"/><path d="M1 7h20" stroke="#000"/><path d="M10 10h2v2h2v2h-2v3h-2v-3H8v-2h2z" fill="#4a1a63"/></svg>
   <span>projects</span>
@@ -289,6 +310,10 @@
 <button type="button" class="desk-icon" data-open="win-runes" aria-label="Open runes.exe">
   <svg width="40" height="44" viewBox="0 0 20 22" aria-hidden="true"><path d="M4 21l-2-6 2-9 6-5 6 4 2 9-3 7z" fill="#c4b2cf" stroke="#000"/><path d="M8 6v11M8 6l5 3-5 3 5 5" fill="none" stroke="#4a1a63" stroke-width="1.6"/></svg>
   <span>runes.exe</span>
+</button>
+<button type="button" class="desk-icon" id="dnc-icon" aria-label="Open do_not_click.exe">
+  <svg width="40" height="40" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5L19 18H1z" fill="#e58ad6" stroke="#000" stroke-linejoin="round"/><path d="M10 6.5v6" stroke="#2e1a3a" stroke-width="2.2"/><rect x="8.9" y="14" width="2.2" height="2.2" fill="#2e1a3a"/><path d="M14 9l-1.5 2.5 1.6 1.2-1.4 2.6" stroke="#000" fill="none" stroke-width=".8"/></svg>
+  <span>do_not_click.exe</span>
 </button>
 <button type="button" class="desk-icon" data-open="win-bin" aria-label="Open graveyard.bin">
   <svg width="40" height="44" viewBox="0 0 20 22" aria-hidden="true"><path d="M3 22V9a7 7 0 0 1 14 0v13z" fill="#c4b2cf" stroke="#000"/><path d="M9 6h2v3h3v2h-3v6H9v-6H6V9h3z" fill="#2e1a3a"/><path d="M0 21.5h20" stroke="#45305a" stroke-width="1.5"/></svg>
@@ -505,6 +530,33 @@
     </div>
     <div class="statusbar"><span>26 runes loaded</span><span>† ancient-ish</span></div>
   </section>
+
+  <!-- ===================== MESSAGE CAI ===================== -->
+  <section class="window raised hidden" id="win-msg" aria-label="pigeon.exe">
+    <div class="titlebar">
+      <span><svg width="14" height="12" viewBox="0 0 14 12" aria-hidden="true"><rect x="0.5" y="0.5" width="13" height="11" fill="none" stroke="#fff"/><path d="M0.5 0.5l6.5 6 6.5-6" fill="none" stroke="#fff"/></svg>pigeon.exe</span>
+      <div class="tb-btns">
+        <button class="raised" data-act="min" aria-label="Minimise">_</button>
+        <button class="raised" data-act="max" aria-label="Maximise">□</button>
+        <button class="raised" data-act="close" aria-label="Close">×</button>
+      </div>
+    </div>
+    <div class="menu"><span><u>F</u>ile</span><span><u>E</u>dit</span></div>
+    <form class="panel sunken msg-panel" id="msg-form" novalidate>
+      <p class="msg-note">Your message goes straight to Cai on Discord. Don't include anything private.</p>
+      <label class="rn-label" for="msg-name">Your name (optional)</label>
+      <input class="ty-input sunken msg-in" id="msg-name" maxlength="32" autocomplete="nickname">
+      <label class="rn-label" for="msg-text">Message</label>
+      <textarea class="rn-box sunken msg-in" id="msg-text" rows="5" maxlength="1000"></textarea>
+      <div class="msg-hp" aria-hidden="true"><label>Leave this empty <input id="msg-website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="msg-row">
+        <span class="msg-count" id="msg-count">0 / 1000</span>
+        <button class="btn raised" id="msg-send" type="submit">Send †</button>
+      </div>
+      <p class="sw-msg" id="msg-status" aria-live="polite"></p>
+    </form>
+    <div class="statusbar"><span>relay: online</span><span>† no pings</span></div>
+  </section>
 </div>
 
 <!-- ===================== CLOSE DIALOG ===================== -->
@@ -559,17 +611,32 @@
   <div class="sm-side" aria-hidden="true"><span>about_me<b>95</b></span></div>
   <div class="sm-items">
       <button role="menuitem" data-open="win-about"><svg viewBox="0 0 20 22" aria-hidden="true"><rect x="1" y="1" width="18" height="20" fill="#1a1220" stroke="#000"/><rect x="2" y="2" width="16" height="4" fill="#4a1a63"/><rect x="4" y="8" width="6" height="6" fill="#c4b2cf"/><path d="M12 9h5M12 11h4M4 16h13M4 18h10" stroke="#e58ad6"/></svg><span>about_me</span></button>
+      <button role="menuitem" data-open="win-msg"><svg viewBox="0 0 22 20" aria-hidden="true"><rect x="1" y="4" width="20" height="14" fill="#c4b2cf" stroke="#000"/><path d="M1 4l10 8 10-8" fill="none" stroke="#000"/></svg><span>pigeon.exe</span></button>
       <button role="menuitem" data-open="win-projects"><svg viewBox="0 0 22 20" aria-hidden="true"><path d="M1 3h7l2 2h11v14H1z" fill="#c4b2cf" stroke="#000"/><path d="M1 7h20" stroke="#000"/><path d="M10 10h2v2h2v2h-2v3h-2v-3H8v-2h2z" fill="#4a1a63"/></svg><span>projects</span></button>
       <button role="menuitem" data-open="win-sweeper"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="1" y="1" width="18" height="18" fill="#1a1220" stroke="#000"/><path d="M1 7h18M1 13h18M7 1v18M13 1v18" stroke="#5c3f6e"/><path d="M8.5 12V9a1.5 1.5 0 0 1 3 0v3z" fill="#c4b2cf"/><path d="M3 4h1M16 15h1M15 4h1" stroke="#e58ad6" stroke-width="1.5"/></svg><span>gravesweeper.exe</span></button>
       <button role="menuitem" data-open="win-omen"><svg viewBox="0 0 16 22" aria-hidden="true"><rect x="1" y="1" width="14" height="20" fill="#1a1220" stroke="#c4b2cf"/><rect x="3" y="3" width="10" height="16" fill="none" stroke="#4a1a63"/><path d="M8 6l1.2 3 3 .2-2.3 2 .8 3L8 12.6 5.3 14.2l.8-3-2.3-2 3-.2z" fill="#e58ad6"/></svg><span>daily_omen.exe</span></button>
       <button role="menuitem" data-open="win-typer"><svg viewBox="0 0 22 20" aria-hidden="true"><rect x="1" y="4" width="20" height="13" fill="#c4b2cf" stroke="#000"/><path d="M4 8h2M8 8h2M12 8h2M16 8h2M4 11h2M8 11h2M12 11h2M16 11h2M6 14h10" stroke="#2e1a3a" stroke-width="1.5"/><path d="M11 4V1h4" stroke="#c4b2cf" fill="none"/></svg><span>typer.exe</span></button>
       <button role="menuitem" data-open="win-runes"><svg viewBox="0 0 20 22" aria-hidden="true"><path d="M4 21l-2-6 2-9 6-5 6 4 2 9-3 7z" fill="#c4b2cf" stroke="#000"/><path d="M8 6v11M8 6l5 3-5 3 5 5" fill="none" stroke="#4a1a63" stroke-width="1.6"/></svg><span>runes.exe</span></button>
+      <button role="menuitem" id="dnc-start"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5L19 18H1z" fill="#e58ad6" stroke="#000" stroke-linejoin="round"/><path d="M10 6.5v6" stroke="#2e1a3a" stroke-width="2.2"/><rect x="8.9" y="14" width="2.2" height="2.2" fill="#2e1a3a"/><path d="M14 9l-1.5 2.5 1.6 1.2-1.4 2.6" stroke="#000" fill="none" stroke-width=".8"/></svg><span>do_not_click.exe</span></button>
       <button role="menuitem" data-open="win-bin"><svg viewBox="0 0 20 22" aria-hidden="true"><path d="M3 22V9a7 7 0 0 1 14 0v13z" fill="#c4b2cf" stroke="#000"/><path d="M9 6h2v3h3v2h-3v6H9v-6H6V9h3z" fill="#2e1a3a"/><path d="M0 21.5h20" stroke="#45305a" stroke-width="1.5"/></svg><span>graveyard.bin</span></button>
       <div class="sm-sep"></div>
       <button role="menuitem" data-menu="about"><svg viewBox="0 0 12 14" aria-hidden="true"><path d="M5 0h2v4h5v2H7v8H5V6H0V4h5z" fill="#9b4dff"/></svg><span>About this page…</span></button>
       <button role="menuitem" data-menu="contact"><svg viewBox="0 0 24 24" fill="none" stroke="#ece0ef" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg><span>Contact Cai</span></button>
       <div class="sm-sep"></div>
       <button role="menuitem" id="sm-shutdown"><svg viewBox="0 0 24 24" fill="none" stroke="#e58ad6" stroke-width="2.4" aria-hidden="true"><path d="M12 3v9"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0"/></svg><span>Shut down…</span></button>
+  </div>
+</div>
+
+<div id="err-layer"></div>
+
+<div id="dnc" role="alertdialog" aria-modal="true" aria-labelledby="dnc-text">
+  <div class="window raised">
+    <div class="titlebar"><span>do_not_click.exe</span></div>
+    <div class="dlg-body">
+      <svg width="34" height="34" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.5" fill="#e58ad6" stroke="#000"/><path d="M7 7l6 6M13 7l-6 6" stroke="#4a1a63" stroke-width="2"/></svg>
+      <p id="dnc-text">Please do not click that again.</p>
+    </div>
+    <div class="dlg-btns"><button class="btn raised" id="dnc-ok">OK</button></div>
   </div>
 </div>
 
@@ -898,6 +965,7 @@
     var w = document.getElementById(id); restore(w);
     if (id === "win-typer") setTimeout(function(){ var i = document.getElementById("ty-input"); if (i) i.focus(); }, 50);
     if (id === "win-runes") setTimeout(function(){ document.getElementById("rn-text").focus(); }, 50);
+    if (id === "win-msg") setTimeout(function(){ document.getElementById("msg-text").focus(); }, 50);
   }
   var startBtn = document.getElementById("start"), startMenu = document.getElementById("startmenu");
   function toggleStart(open){
@@ -942,6 +1010,131 @@
       if (bootDone){ clearInterval(wait); restore(document.getElementById("win-about")); }
     }, 100);
   });
+
+  /* ===== DO_NOT_CLICK.EXE: icons freak out, silly errors, everything falls, then floats back ===== */
+  (function(){
+    var LINES = ["Please do not click that again.", "I said do not click it.", "Why are you like this.", "Fine. Click it forever. See if I care.", "The windows have filed a complaint."];
+    var ERRORS = [
+      "gravity.dll has stopped working.",
+      "Error 404: floor not found.",
+      "The icons have left the desktop. Reason: unknown.",
+      "Window physics enabled. This was a mistake.",
+      "about_me has fallen and can't get up.",
+      "Too much chaos. Please insert more Monster.",
+      "The desktop needs a moment.",
+      "Something happened. We don't know what either.",
+      "Not enough sleep to complete this operation.",
+      "desktop.exe is not responding. It never was.",
+      "Error: too many errors.",
+      "Task failed successfully.",
+      "Please wait while nothing happens.",
+      "Keyboard not found. Press F1 to continue.",
+      "Your PC ran into a vibe and needs to restart.",
+      "Error: Monster can is empty.",
+      "The void is full. Try again later.",
+      "Cai.exe is asleep. Do not disturb."
+    ];
+    var count = 0, busy = false, box = document.getElementById("dnc");
+    var layer = document.getElementById("err-layer");
+    function message(){
+      document.getElementById("dnc-text").textContent = LINES[Math.min(count, LINES.length - 1)];
+      count++; box.classList.add("open"); play("beep"); document.getElementById("dnc-ok").focus();
+    }
+    var beepAt = 0;
+    function spawnError(text, x, y, life){
+      var w = document.createElement("div");
+      w.className = "window raised err-pop";
+      w.setAttribute("aria-hidden", "true");
+      w.style.left = Math.round(x) + "px"; w.style.top = Math.round(y) + "px";
+      w.innerHTML = '<div class="titlebar"><span>Error</span></div><div class="dlg-body"><svg width="30" height="30" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.5" fill="#e58ad6" stroke="#000"/><path d="M7 7l6 6M13 7l-6 6" stroke="#4a1a63" stroke-width="2"/></svg><p></p></div><div class="dlg-btns"><button class="btn raised" tabindex="-1">OK</button></div>';
+      w.querySelector("p").textContent = text;
+      w.querySelector("button").addEventListener("click", function(){ play("click"); w.remove(); });
+      layer.appendChild(w);
+      var now = performance.now(); if (now - beepAt > 120){ play("beep"); beepAt = now; }   /* don't beep 100 times */
+      setTimeout(function(){ w.remove(); }, life || 2500);
+    }
+    /* a cascade of errors that trails around the screen like a glitching mouse */
+    function errorStorm(total, every){
+      var W = Math.max(40, window.innerWidth - 290), H = Math.max(40, window.innerHeight - 210);
+      var x = Math.random()*W, y = Math.random()*H, dx = 38 + Math.random()*24, dy = 30 + Math.random()*22, n = 0;
+      var t = setInterval(function(){
+        if (n++ >= total){ clearInterval(t); return; }
+        x += dx; y += dy;
+        if (x < 0 || x > W){ dx = -dx; x = Math.max(0, Math.min(W, x)); }
+        if (y < 0 || y > H){ dy = -dy; y = Math.max(0, Math.min(H, y)); }
+        if (n % 3 === 0){ x = Math.random()*W; y = Math.random()*H; dx = (Math.random() < .5 ? -1 : 1) * Math.abs(dx); dy = (Math.random() < .5 ? -1 : 1) * Math.abs(dy); }   /* jump to a new spot often, so they spread out */
+        spawnError(ERRORS[Math.floor(Math.random()*ERRORS.length)], x, y, 2000 + Math.random()*1800);
+      }, every);
+      return t;
+    }
+    function clearErrors(){
+      var all = layer.querySelectorAll(".err-pop");
+      Array.prototype.forEach.call(all, function(e, i){ setTimeout(function(){ e.remove(); }, i * 70); });
+    }
+    function run(){
+      if (busy) return; busy = true; play("click");
+      var els = Array.prototype.slice.call(document.querySelectorAll("#desktop .window:not(.hidden), .desk-icon"))
+        .filter(function(el){ return el.offsetParent !== null || getComputedStyle(el).position === "fixed"; });
+      if (reduce || !els.length){ spawnError(ERRORS[0], window.innerWidth/2 - 150, window.innerHeight/3, 2500); busy = false; message(); return; }
+
+      /* 1. freak out: icons jitter, spin and flicker; windows shudder */
+      var errTimer = errorStorm(120, 32);   /* about 120 errors over 4 seconds */
+      var fStart = performance.now();
+      (function freak(t){
+        els.forEach(function(el){
+          var icon = el.classList.contains("desk-icon"), j = icon ? 9 : 4, r = icon ? 25 : 2.5;
+          el.style.transform = "translate(" + ((Math.random()-.5)*j*2) + "px," + ((Math.random()-.5)*j*2) + "px) rotate(" + ((Math.random()-.5)*r*2) + "deg)";
+          if (icon) el.style.filter = Math.random() < .25 ? "invert(1) hue-rotate(90deg)" : "";
+        });
+        if (t - fStart < 1300) requestAnimationFrame(freak);
+        else { els.forEach(function(el){ el.style.filter = ""; }); drop(); }
+      })(fStart);
+
+      /* 2. everything falls; icons spin wildly on the way down */
+      function drop(){
+        var floor = window.innerHeight - 42;
+        var bodies = els.map(function(el){
+          el.style.transform = "";
+          var r = el.getBoundingClientRect(), icon = el.classList.contains("desk-icon");
+          return { el: el, y: 0, vy: -3 - Math.random()*5, max: Math.max(0, floor - r.bottom), rot: 0,
+                   vr: (Math.random() - .5) * (icon ? 18 : 1.6), done: false, bounces: 0 };
+        });
+        var start = performance.now(), thud = 0;
+        (function fall(t){
+          var moving = false;
+          bodies.forEach(function(b){
+            if (b.done) return;
+            b.vy += 0.9; b.y += b.vy; b.rot += b.vr;
+            if (b.y >= b.max){
+              b.y = b.max; b.vy *= -0.42; b.vr *= 0.55; b.bounces++;
+              if (t - thud > 90){ play("hover"); thud = t; }
+              if (Math.abs(b.vy) < 1.5 || b.bounces > 5) b.done = true;
+            }
+            b.el.style.transform = "translateY(" + b.y + "px) rotate(" + b.rot + "deg)";
+            if (!b.done) moving = true;
+          });
+          if (moving && t - start < 4000) requestAnimationFrame(fall);
+          else setTimeout(function(){ floatBack(bodies); }, 1500);
+        })(start);
+      }
+
+      /* 3. errors vanish, everything floats home, final message */
+      function floatBack(bodies){
+        clearInterval(errTimer); clearErrors();
+        bodies.forEach(function(b){ b.el.style.transition = "transform .9s cubic-bezier(.3,1.4,.5,1)"; b.el.style.transform = ""; });
+        play("chime");
+        setTimeout(function(){
+          bodies.forEach(function(b){ b.el.style.transition = ""; });
+          busy = false; message();
+        }, 950);
+      }
+    }
+    document.getElementById("dnc-icon").addEventListener("click", run);
+    document.getElementById("dnc-icon").addEventListener("mouseenter", function(){ play("hover"); });
+    document.getElementById("dnc-start").addEventListener("click", function(){ toggleStart(false); run(); });
+    document.getElementById("dnc-ok").addEventListener("click", function(){ play("click"); box.classList.remove("open"); });
+    document.addEventListener("keydown", function(e){ if (e.key === "Escape" && box.classList.contains("open")) document.getElementById("dnc-ok").click(); });
+  })();
 
   /* ===== MENUS (Help) ===== */
   var aboutBox = document.getElementById("about");
@@ -998,6 +1191,37 @@
     });
     document.getElementById("rn-clear").addEventListener("click", function(){
       play("click"); txt.value = ""; run.value = ""; msg.textContent = "Type in either box. It translates both ways."; txt.focus();
+    });
+  })();
+
+  /* ===== MESSAGE_CAI.EXE (sends through the Cloudflare Worker, never straight to Discord) ===== */
+  (function(){
+    var RELAY = "https://website-messages.kingcai2006.workers.dev";
+    var form = document.getElementById("msg-form"), text = document.getElementById("msg-text"),
+        nameEl = document.getElementById("msg-name"), send = document.getElementById("msg-send"),
+        status = document.getElementById("msg-status"), countEl = document.getElementById("msg-count"), lastSent = 0;
+    text.addEventListener("input", function(){ countEl.textContent = text.value.length + " / 1000"; play("type"); });
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var msg = text.value.trim();
+      if (!msg){ status.textContent = "Write a message first."; text.focus(); play("beep"); return; }
+      if (Date.now() - lastSent < 15000){ status.textContent = "Slow down a little. Try again in a few seconds."; play("beep"); return; }
+      send.disabled = true; status.textContent = "Sending to the void…"; play("click");
+      fetch(RELAY, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: nameEl.value.trim(), message: msg, website: document.getElementById("msg-website").value })
+      }).then(function(r){ return r.json().catch(function(){ return { ok: false }; }); })
+        .then(function(res){
+          if (res && res.ok){
+            lastSent = Date.now(); text.value = ""; countEl.textContent = "0 / 1000";
+            status.textContent = "Message delivered to the void. Cai will see it."; play("chime");
+          } else {
+            status.textContent = (res && res.error) || "Couldn't send right now. Try again later."; play("beep");
+          }
+        })
+        .catch(function(){ status.textContent = "Couldn't reach the void. Check your connection and try again."; play("beep"); })
+        .then(function(){ send.disabled = false; });
     });
   })();
 
