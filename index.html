@@ -90,39 +90,62 @@
         <!-- ===== YOUR PICTURE: upload pfp.png to Neocities next to this file ===== -->
         <img class="pic" src="pfp.png" alt="Profile picture">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <h1>[Your Name]</h1>
-          <p class="sub">[pronouns] · [timezone]</p>
-          <p class="status">&gt; status: awake after midnight_</p>
+          <h1>Cai</h1>
+          <p class="sub">Any · UK</p>
+          <p class="status" id="status">&gt; status: awake after midnight_</p>
         </div>
       </div>
 
       <div class="divider"><i></i><svg width="10" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="M5 0h2v4h5v2H7v8H5V6H0V4h5z" fill="#e58ad6"/></svg><i></i></div>
 
-      <p class="bio">[A line or two about you: what you make, what you're into, what people can find you for.]</p>
+      <p class="bio">Developer of many random things.</p>
 
       <fieldset class="sunken">
         <legend>Links</legend>
         <!-- ===== YOUR LINKS: replace each # with your URL ===== -->
-        <a class="link raised" href="#" target="_blank" rel="noopener">
+        <a class="link raised" href="https://steamcommunity.com/id/Caii26/" target="_blank" rel="noopener">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 6l4 6 5-4-2 10H5L3 8l5 4z"/></svg>
           <span>Steam</span><small>enter †</small>
         </a>
-        <a class="link raised" href="#" target="_blank" rel="noopener">
+        <a class="link raised" href="https://discord.com/users/239824816734076928" target="_blank" rel="noopener">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>
           <span>Discord</span><small>enter †</small>
         </a>
-        <a class="link raised" href="#" target="_blank" rel="noopener">
+        <a class="link raised" href="https://github.com/Caii26" target="_blank" rel="noopener">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>
           <span>GitHub</span><small>enter †</small>
         </a>
       </fieldset>
     </div>
 
-    <div class="statusbar"><span>3 soul(s) bound</span><span>† est. [YEAR]</span></div>
+    <div class="statusbar"><span>3 soul(s) bound</span><span>† est. 2026</span></div>
   </div>
 </div>
 
 <div class="taskbar"><div class="clock">09:99</div></div>
 
+<script>
+  /* ===== STATUS CHANGES WITH THE TIME OF DAY (UK time) ===== */
+  (function(){
+    var statuses = [
+      [0,  "awake after midnight"],
+      [5,  "still hasn't slept"],
+      [9,  "running on zero sleep"],
+      [12, "napping with the curtains shut"],
+      [17, "finally waking up"],
+      [21, "the night shift begins"]
+    ];
+    function update(){
+      var h;
+      try {
+        h = parseInt(new Intl.DateTimeFormat("en-GB",{hour:"numeric",hourCycle:"h23",timeZone:"Europe/London"}).format(new Date()),10);
+      } catch(e){ h = new Date().getHours(); }
+      var text = statuses[0][1];
+      for (var i=0;i<statuses.length;i++){ if (h >= statuses[i][0]) text = statuses[i][1]; }
+      document.getElementById("status").textContent = "> status: " + text + "_";
+    }
+    update(); setInterval(update, 60000);
+  })();
+</script>
 </body>
 </html>
