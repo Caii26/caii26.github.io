@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>about_me.exe</title>
+<title>about_me</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M13 2h6v8h9v6h-9v14h-6V16H4v-6h9z' fill='%23000000' transform='translate(-3 1)'/><path d='M13 2h6v8h9v6h-9v14h-6V16H4v-6h9z' fill='%239b4dff' transform='translate(1 0)'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -78,9 +78,9 @@
   .proj span{font-size:19px;color:var(--muted);line-height:1.15}
 
   /* ----- dialog ----- */
-  #dialog,#denied{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45)}
-  #dialog.open,#denied.open{display:flex}
-  #dialog .window,#denied .window{max-width:340px}
+  #denied{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45)}
+  #denied.open{display:flex}
+  #denied .window{max-width:340px}
   .dlg-body{display:flex;gap:14px;align-items:center;padding:18px 16px;font-size:21px}
   .dlg-body svg{flex-shrink:0}
   .dlg-btns{display:flex;justify-content:center;gap:10px;padding:0 0 14px}
@@ -136,7 +136,7 @@
   @media (prefers-reduced-motion:reduce){.card.flip{animation:none}}
   @media (max-width:520px){ .task{padding:0 6px;font-size:11px;max-width:96px} }
   /* ----- recycle bin ----- */
-  .desk-icon{all:unset;width:110px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;font-size:17px;color:var(--text);text-align:center;padding:4px}
+  .desk-icon{all:unset;width:124px;font-size:16px !important;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;font-size:17px;color:var(--text);text-align:center;padding:4px}
   .desk-icon span{padding:0 3px;line-height:1.1}
   .desk-icon:hover span,.desk-icon:focus-visible span{background:var(--titlebar);color:#fff}
   .desk-icon:focus-visible{outline:1px dotted #e58ad6}
@@ -188,7 +188,7 @@
   .ty-input:focus-visible{outline:2px solid #9b4dff;outline-offset:2px}
   .ty-input.wrong{background:#f7c1d1}
   .ty-best{font-size:18px;color:var(--accent);text-align:center}
-  @media (max-width:700px){ .desk-icons{position:static;flex-direction:row;flex-wrap:wrap;margin:16px 0 0 16px} .desk-icons .desk-icon{margin:0} }
+  @media (max-width:700px){ .desk-icons{display:none} }
   /* ----- menus ----- */
   .mwrap{position:relative}
   .mbtn{all:unset;cursor:pointer;color:var(--muted);padding:0 4px}
@@ -208,30 +208,100 @@
   .about-name{font-family:'Pixelify Sans',sans-serif;font-weight:700;font-size:18px;color:#fff}
   .about-line{height:0;border-top:1px solid #000;border-bottom:1px solid var(--line);margin:8px 0}
   .about-small{font-size:17px;color:var(--muted)}
+  /* ----- start menu ----- */
+  .start{all:unset;cursor:pointer;height:28px;padding:0 10px 0 8px;display:flex;align-items:center;gap:6px;font-family:'Pixelify Sans',sans-serif;font-weight:700;font-size:15px;color:#fff;background:var(--window);border-top:2px solid var(--light);border-left:2px solid var(--light);border-right:2px solid var(--dark);border-bottom:2px solid var(--dark)}
+  .start[aria-expanded="true"]{border-top-color:var(--dark);border-left-color:var(--dark);border-right-color:var(--light);border-bottom-color:var(--light);background:var(--panel)}
+  .start:focus-visible{outline:1px dotted #e58ad6;outline-offset:-5px}
+  .startmenu{position:fixed;left:4px;bottom:44px;z-index:9700;display:flex;background:var(--window);box-shadow:4px 4px 0 #000;max-height:calc(100vh - 60px)}
+  .startmenu[hidden]{display:none}
+  .sm-side{width:30px;background:var(--titlebar);display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px}
+  .sm-side span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Pixelify Sans',sans-serif;font-weight:700;font-size:18px;color:#c4b2cf;letter-spacing:1px}
+  .sm-side b{color:#fff}
+  .sm-items{display:flex;flex-direction:column;padding:2px;min-width:220px;overflow-y:auto}
+  .sm-items button{all:unset;cursor:pointer;display:flex;align-items:center;gap:12px;padding:6px 12px 6px 8px;font-size:20px;color:var(--text)}
+  .sm-items button:hover,.sm-items button:focus-visible{background:var(--titlebar);color:#fff}
+  .sm-items svg{width:26px;height:26px;flex-shrink:0}
+  .sm-sep{height:0;margin:3px 4px;border-top:1px solid #000;border-bottom:1px solid var(--line)}
+  /* ----- shutdown ----- */
+  #shutdown{position:fixed;inset:0;z-index:10003;background:#000;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
+  #shutdown[hidden]{display:none}
+  #shutdown,#shutdown *{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2718%27%20height%3D%2726%27%20viewBox%3D%270%200%209%2013%27%20shape-rendering%3D%27crispEdges%27%3E%3Cpath%20d%3D%27M0%200h9v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%201h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%201h7v1H1z%27%20fill%3D%27%23c4b2cf%27%2F%3E%3Cpath%20d%3D%27M8%201h1v1H8z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%202h1v1H1z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M2%202h5v1H2z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M7%202h1v1H7z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%203h1v1H1z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M2%203h5v1H2z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M7%203h1v1H7z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M2%204h1v1H2z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M3%204h3v1H3z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M6%204h1v1H6z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M3%205h1v1H3z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M4%205h1v1H4z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M5%205h1v1H5z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M4%206h1v1H4z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M3%207h1v1H3z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M5%207h1v1H5z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M2%208h1v1H2z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M4%208h1v1H4z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M6%208h1v1H6z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%209h1v1H1z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M3%209h3v1H3z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M7%209h1v1H7z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%2010h1v1H1z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M2%2010h5v1H2z%27%20fill%3D%27%239b4dff%27%2F%3E%3Cpath%20d%3D%27M7%2010h1v1H7z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%2011h1v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M1%2011h7v1H1z%27%20fill%3D%27%23c4b2cf%27%2F%3E%3Cpath%20d%3D%27M8%2011h1v1H8z%27%20fill%3D%27%23000000%27%2F%3E%3Cpath%20d%3D%27M0%2012h9v1H0z%27%20fill%3D%27%23000000%27%2F%3E%3C%2Fsvg%3E") 9 12, wait}
+  #shutdown.safe,#shutdown.safe *{cursor:auto}
+  #shutdown.safe .sd-on{cursor:pointer}
+  .sd-step{display:flex;flex-direction:column;align-items:center;gap:16px}
+  .sd-step[hidden]{display:none}
+  .sd-big{font-family:'Pixelify Sans',sans-serif;font-weight:700;font-size:24px;color:#fff}
+  .sd-dots::after{content:"";animation:dots 1.2s steps(4) infinite}
+  @keyframes dots{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}}
+  .sd-small{font-size:20px;color:var(--muted)}
+  .sd-safe{font-family:'Pixelify Sans',sans-serif;font-weight:700;font-size:34px;line-height:1.3;color:#e58ad6;text-shadow:3px 3px 0 #4a1a63}
+  .sd-on{display:flex;align-items:center;gap:8px;margin-top:10px}
+  /* ----- runes ----- */
+  #win-runes{max-width:440px}
+  .rn-panel{gap:8px;padding:16px}
+  .rn-label{font-size:18px;color:var(--muted)}
+  .rn-box{all:unset;box-sizing:border-box;width:100%;min-height:76px;padding:8px 10px;background:#ece0ef;color:#0b0710;font-family:'VT323',monospace;font-size:22px;line-height:1.2;white-space:pre-wrap;word-break:break-word;overflow:auto}
+  .rn-box::placeholder{color:#6f5a7e}
+  .rn-box:focus-visible{outline:2px solid #9b4dff;outline-offset:2px}
+  .rn-runes{background:#000;color:#e58ad6;font-family:'Segoe UI Historic','Noto Sans Runic','Junicode',serif;font-size:24px;letter-spacing:2px}
+  .rn-runes::placeholder{color:#7a5a8a}
+  .rn-mid{text-align:center;font-size:22px;color:var(--accent)}
+  .rn-btns{display:flex;gap:10px;justify-content:center;margin-top:6px}
 </style>
 </head>
 <body>
 <div id="enter"><button id="enterBtn">† click to enter †</button></div>
 <div id="boot" aria-hidden="true"></div>
+<div id="shutdown" role="dialog" aria-modal="true" aria-live="polite" hidden>
+  <div class="sd-step" id="sd-1">
+    <svg width="72" height="84" viewBox="0 0 12 14" aria-hidden="true"><path d="M5 0h2v4h5v2H7v8H5V6H0V4h5z" fill="#9b4dff"/></svg>
+    <p class="sd-big">about_me is shutting down<span class="sd-dots"></span></p>
+    <p class="sd-small" id="sd-task">Saving soul…</p>
+  </div>
+  <div class="sd-step" id="sd-2" hidden>
+    <p class="sd-safe">It's now safe to close<br>the website.</p>
+    <p class="sd-small">(or go to sleep. you won't, but you could.)</p>
+    <button class="btn raised sd-on" id="sd-on"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3v9"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0"/></svg>Turn it back on</button>
+  </div>
+</div>
 
 <div class="desk-icons">
-<button type="button" class="desk-icon" id="bin-icon" aria-label="Open graveyard.bin">
-  <svg width="40" height="44" viewBox="0 0 20 22" aria-hidden="true"><path d="M3 22V9a7 7 0 0 1 14 0v13z" fill="#c4b2cf" stroke="#000"/><path d="M9 6h2v3h3v2h-3v6H9v-6H6V9h3z" fill="#2e1a3a"/><path d="M0 21.5h20" stroke="#45305a" stroke-width="1.5"/></svg>
-  <span>graveyard.bin</span>
+<button type="button" class="desk-icon" data-open="win-about" aria-label="Open about_me">
+  <svg width="40" height="44" viewBox="0 0 20 22" aria-hidden="true"><rect x="1" y="1" width="18" height="20" fill="#1a1220" stroke="#000"/><rect x="2" y="2" width="16" height="4" fill="#4a1a63"/><rect x="4" y="8" width="6" height="6" fill="#c4b2cf"/><path d="M12 9h5M12 11h4M4 16h13M4 18h10" stroke="#e58ad6"/></svg>
+  <span>about_me</span>
 </button>
-
-<button type="button" class="desk-icon" id="typer-icon" aria-label="Open typer.exe">
+<button type="button" class="desk-icon" data-open="win-projects" aria-label="Open projects">
+  <svg width="44" height="40" viewBox="0 0 22 20" aria-hidden="true"><path d="M1 3h7l2 2h11v14H1z" fill="#c4b2cf" stroke="#000"/><path d="M1 7h20" stroke="#000"/><path d="M10 10h2v2h2v2h-2v3h-2v-3H8v-2h2z" fill="#4a1a63"/></svg>
+  <span>projects</span>
+</button>
+<button type="button" class="desk-icon" data-open="win-sweeper" aria-label="Open gravesweeper.exe">
+  <svg width="40" height="40" viewBox="0 0 20 20" aria-hidden="true"><rect x="1" y="1" width="18" height="18" fill="#1a1220" stroke="#000"/><path d="M1 7h18M1 13h18M7 1v18M13 1v18" stroke="#5c3f6e"/><path d="M8.5 12V9a1.5 1.5 0 0 1 3 0v3z" fill="#c4b2cf"/><path d="M3 4h1M16 15h1M15 4h1" stroke="#e58ad6" stroke-width="1.5"/></svg>
+  <span>gravesweeper.exe</span>
+</button>
+<button type="button" class="desk-icon" data-open="win-omen" aria-label="Open daily_omen.exe">
+  <svg width="34" height="44" viewBox="0 0 16 22" aria-hidden="true"><rect x="1" y="1" width="14" height="20" fill="#1a1220" stroke="#c4b2cf"/><rect x="3" y="3" width="10" height="16" fill="none" stroke="#4a1a63"/><path d="M8 6l1.2 3 3 .2-2.3 2 .8 3L8 12.6 5.3 14.2l.8-3-2.3-2 3-.2z" fill="#e58ad6"/></svg>
+  <span>daily_omen.exe</span>
+</button>
+<button type="button" class="desk-icon" data-open="win-typer" aria-label="Open typer.exe">
   <svg width="44" height="40" viewBox="0 0 22 20" aria-hidden="true"><rect x="1" y="4" width="20" height="13" fill="#c4b2cf" stroke="#000"/><path d="M4 8h2M8 8h2M12 8h2M16 8h2M4 11h2M8 11h2M12 11h2M16 11h2M6 14h10" stroke="#2e1a3a" stroke-width="1.5"/><path d="M11 4V1h4" stroke="#c4b2cf" fill="none"/></svg>
   <span>typer.exe</span>
+</button>
+<button type="button" class="desk-icon" data-open="win-runes" aria-label="Open runes.exe">
+  <svg width="40" height="44" viewBox="0 0 20 22" aria-hidden="true"><path d="M4 21l-2-6 2-9 6-5 6 4 2 9-3 7z" fill="#c4b2cf" stroke="#000"/><path d="M8 6v11M8 6l5 3-5 3 5 5" fill="none" stroke="#4a1a63" stroke-width="1.6"/></svg>
+  <span>runes.exe</span>
+</button>
+<button type="button" class="desk-icon" data-open="win-bin" aria-label="Open graveyard.bin">
+  <svg width="40" height="44" viewBox="0 0 20 22" aria-hidden="true"><path d="M3 22V9a7 7 0 0 1 14 0v13z" fill="#c4b2cf" stroke="#000"/><path d="M9 6h2v3h3v2h-3v6H9v-6H6V9h3z" fill="#2e1a3a"/><path d="M0 21.5h20" stroke="#45305a" stroke-width="1.5"/></svg>
+  <span>graveyard.bin</span>
 </button>
 </div>
 
 <div class="desktop" id="desktop">
 
   <!-- ===================== ABOUT ME WINDOW ===================== -->
-  <section class="window raised" id="win-about" aria-label="about_me.exe">
+  <section class="window raised" id="win-about" aria-label="about_me">
     <div class="titlebar">
-      <span><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="M5 0h2v4h5v2H7v8H5V6H0V4h5z" fill="#fff"/></svg>about_me.exe</span>
+      <span><svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="M5 0h2v4h5v2H7v8H5V6H0V4h5z" fill="#fff"/></svg>about_me</span>
       <div class="tb-btns">
         <button class="raised" data-act="min" aria-label="Minimise">_</button>
         <button class="raised" data-act="max" aria-label="Maximise">□</button>
@@ -271,9 +341,9 @@
   </section>
 
   <!-- ===================== PROJECTS WINDOW ===================== -->
-  <section class="window raised hidden" id="win-projects" aria-label="projects.exe">
+  <section class="window raised hidden" id="win-projects" aria-label="projects">
     <div class="titlebar">
-      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" aria-hidden="true"><path d="M3 6h7l2 2h9v11H3z"/></svg>projects.exe</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" aria-hidden="true"><path d="M3 6h7l2 2h9v11H3z"/></svg>projects</span>
       <div class="tb-btns">
         <button class="raised" data-act="min" aria-label="Minimise">_</button>
         <button class="raised" data-act="max" aria-label="Maximise">□</button>
@@ -409,23 +479,35 @@
     </div>
     <div class="statusbar"><span>wpm = words per minute</span><span>† 30s</span></div>
   </section>
+
+  <!-- ===================== RUNES ===================== -->
+  <section class="window raised hidden" id="win-runes" aria-label="runes.exe">
+    <div class="titlebar">
+      <span><svg width="10" height="14" viewBox="0 0 10 14" aria-hidden="true"><path d="M2 1v12M2 1l6 3.5L2 8l6 5" fill="none" stroke="#fff" stroke-width="1.8"/></svg>runes.exe</span>
+      <div class="tb-btns">
+        <button class="raised" data-act="min" aria-label="Minimise">_</button>
+        <button class="raised" data-act="max" aria-label="Maximise">□</button>
+        <button class="raised" data-act="close" aria-label="Close">×</button>
+      </div>
+    </div>
+    <div class="menu"><span><u>F</u>ile</span><span><u>E</u>dit</span></div>
+    <div class="panel sunken rn-panel">
+      <label class="rn-label" for="rn-text">Plain text</label>
+      <textarea class="rn-box sunken" id="rn-text" rows="3" spellcheck="false" placeholder="type something…"></textarea>
+      <div class="rn-mid" aria-hidden="true">⇅</div>
+      <label class="rn-label" for="rn-runes">Runes</label>
+      <textarea class="rn-box rn-runes sunken" id="rn-runes" rows="3" spellcheck="false" placeholder="ᚱᚢᚾᛖᛊ…"></textarea>
+      <div class="rn-btns">
+        <button class="btn raised" id="rn-copy">copy runes</button>
+        <button class="btn raised" id="rn-clear">clear</button>
+      </div>
+      <p class="sw-msg" id="rn-msg" aria-live="polite">Type in either box. It translates both ways.</p>
+    </div>
+    <div class="statusbar"><span>26 runes loaded</span><span>† ancient-ish</span></div>
+  </section>
 </div>
 
 <!-- ===================== CLOSE DIALOG ===================== -->
-<div id="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-text">
-  <div class="window raised">
-    <div class="titlebar"><span>leave.exe</span></div>
-    <div class="dlg-body">
-      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#e58ad6" stroke-width="2" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/></svg>
-      <p id="dlg-text">Are you sure you want to leave the void?</p>
-    </div>
-    <div class="dlg-btns">
-      <button class="btn raised" id="dlg-yes">Yes</button>
-      <button class="btn raised" id="dlg-no">No</button>
-    </div>
-  </div>
-</div>
-
 <div id="denied" role="alertdialog" aria-modal="true" aria-labelledby="den-text">
   <div class="window raised">
     <div class="titlebar"><span>access_denied.exe</span></div>
@@ -456,11 +538,11 @@
 
 <div id="about" role="dialog" aria-modal="true" aria-labelledby="about-title">
   <div class="window raised">
-    <div class="titlebar"><span id="about-title">About about_me.exe</span></div>
+    <div class="titlebar"><span id="about-title">About about_me</span></div>
     <div class="about-body">
       <svg width="48" height="56" viewBox="0 0 12 14" aria-hidden="true"><path d="M5 0h2v4h5v2H7v8H5V6H0V4h5z" fill="#9b4dff"/></svg>
       <div>
-        <p class="about-name">about_me.exe</p>
+        <p class="about-name">about_me</p>
         <p>Version 6.66 (build 3am)</p>
         <p>Made by Cai</p>
         <div class="about-line"></div>
@@ -473,15 +555,27 @@
   </div>
 </div>
 
-<div class="taskbar">
-  <div class="tasks">
-    <button class="task pressed raised" data-win="win-about">about_me.exe</button>
-    <button class="task raised" data-win="win-projects">projects.exe</button>
-    <button class="task raised" data-win="win-sweeper">gravesweeper.exe</button>
-    <button class="task raised" data-win="win-omen">daily_omen.exe</button>
-    <button class="task raised transient closed" data-win="win-bin">graveyard.bin</button>
-    <button class="task raised transient closed" data-win="win-typer">typer.exe</button>
+<div class="startmenu raised" id="startmenu" role="menu" aria-label="Start menu" hidden>
+  <div class="sm-side" aria-hidden="true"><span>about_me<b>95</b></span></div>
+  <div class="sm-items">
+      <button role="menuitem" data-open="win-about"><svg viewBox="0 0 20 22" aria-hidden="true"><rect x="1" y="1" width="18" height="20" fill="#1a1220" stroke="#000"/><rect x="2" y="2" width="16" height="4" fill="#4a1a63"/><rect x="4" y="8" width="6" height="6" fill="#c4b2cf"/><path d="M12 9h5M12 11h4M4 16h13M4 18h10" stroke="#e58ad6"/></svg><span>about_me</span></button>
+      <button role="menuitem" data-open="win-projects"><svg viewBox="0 0 22 20" aria-hidden="true"><path d="M1 3h7l2 2h11v14H1z" fill="#c4b2cf" stroke="#000"/><path d="M1 7h20" stroke="#000"/><path d="M10 10h2v2h2v2h-2v3h-2v-3H8v-2h2z" fill="#4a1a63"/></svg><span>projects</span></button>
+      <button role="menuitem" data-open="win-sweeper"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="1" y="1" width="18" height="18" fill="#1a1220" stroke="#000"/><path d="M1 7h18M1 13h18M7 1v18M13 1v18" stroke="#5c3f6e"/><path d="M8.5 12V9a1.5 1.5 0 0 1 3 0v3z" fill="#c4b2cf"/><path d="M3 4h1M16 15h1M15 4h1" stroke="#e58ad6" stroke-width="1.5"/></svg><span>gravesweeper.exe</span></button>
+      <button role="menuitem" data-open="win-omen"><svg viewBox="0 0 16 22" aria-hidden="true"><rect x="1" y="1" width="14" height="20" fill="#1a1220" stroke="#c4b2cf"/><rect x="3" y="3" width="10" height="16" fill="none" stroke="#4a1a63"/><path d="M8 6l1.2 3 3 .2-2.3 2 .8 3L8 12.6 5.3 14.2l.8-3-2.3-2 3-.2z" fill="#e58ad6"/></svg><span>daily_omen.exe</span></button>
+      <button role="menuitem" data-open="win-typer"><svg viewBox="0 0 22 20" aria-hidden="true"><rect x="1" y="4" width="20" height="13" fill="#c4b2cf" stroke="#000"/><path d="M4 8h2M8 8h2M12 8h2M16 8h2M4 11h2M8 11h2M12 11h2M16 11h2M6 14h10" stroke="#2e1a3a" stroke-width="1.5"/><path d="M11 4V1h4" stroke="#c4b2cf" fill="none"/></svg><span>typer.exe</span></button>
+      <button role="menuitem" data-open="win-runes"><svg viewBox="0 0 20 22" aria-hidden="true"><path d="M4 21l-2-6 2-9 6-5 6 4 2 9-3 7z" fill="#c4b2cf" stroke="#000"/><path d="M8 6v11M8 6l5 3-5 3 5 5" fill="none" stroke="#4a1a63" stroke-width="1.6"/></svg><span>runes.exe</span></button>
+      <button role="menuitem" data-open="win-bin"><svg viewBox="0 0 20 22" aria-hidden="true"><path d="M3 22V9a7 7 0 0 1 14 0v13z" fill="#c4b2cf" stroke="#000"/><path d="M9 6h2v3h3v2h-3v6H9v-6H6V9h3z" fill="#2e1a3a"/><path d="M0 21.5h20" stroke="#45305a" stroke-width="1.5"/></svg><span>graveyard.bin</span></button>
+      <div class="sm-sep"></div>
+      <button role="menuitem" data-menu="about"><svg viewBox="0 0 12 14" aria-hidden="true"><path d="M5 0h2v4h5v2H7v8H5V6H0V4h5z" fill="#9b4dff"/></svg><span>About this page…</span></button>
+      <button role="menuitem" data-menu="contact"><svg viewBox="0 0 24 24" fill="none" stroke="#ece0ef" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg><span>Contact Cai</span></button>
+      <div class="sm-sep"></div>
+      <button role="menuitem" id="sm-shutdown"><svg viewBox="0 0 24 24" fill="none" stroke="#e58ad6" stroke-width="2.4" aria-hidden="true"><path d="M12 3v9"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0"/></svg><span>Shut down…</span></button>
   </div>
+</div>
+
+<div class="taskbar">
+  <button class="start raised" id="start" aria-haspopup="menu" aria-expanded="false"><svg width="16" height="18" viewBox="0 0 12 14" aria-hidden="true"><path d="M5 0h2v4h5v2H7v8H5V6H0V4h5z" fill="#9b4dff"/></svg>Start</button>
+  <div class="tasks"></div>
   <button class="mute raised" id="mute" aria-label="Mute sounds"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path id="waves" d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/><path id="cross" d="M16 9l6 6M22 9l-6 6" style="display:none"/></svg></button>
   <div class="tray sunken">
     <button class="tray-ico" data-tip="Soul: 13% remaining. Drink a Monster." aria-label="Soul: 13% remaining"><svg width="22" height="14" viewBox="0 0 22 14" aria-hidden="true"><rect x="1" y="1" width="17" height="12" fill="none" stroke="#ece0ef" stroke-width="2"/><rect x="19" y="4.5" width="2" height="5" fill="#ece0ef"/><rect x="3" y="3" width="3" height="8" fill="#e58ad6"/></svg></button>
@@ -542,6 +636,10 @@
     click: function(){ tone(660, 0, 0.05, "square", 0.05); tone(990, 0.05, 0.07, "square", 0.05); },
     type:  function(){ tone(1200 + Math.random()*400, 0, 0.02, "square", 0.012); },
     beep:  function(){ tone(440, 0, 0.18, "square", 0.04); },
+    shutdown: function(){                               /* descending power-off chime */
+      [523.3, 440, 329.6, 261.6, 220].forEach(function(f, i){ tone(f, i*0.2, 1.2 - i*0.1, "triangle", 0.11); });
+      tone(55, 0.4, 2.2, "sine", 0.09);
+    },
     chime: function(){
       [220, 261.6, 329.6, 440, 523.3].forEach(function(f, i){ tone(f, i*0.16, 1.4 - i*0.12, "triangle", 0.12); });
       tone(110, 0, 1.8, "sine", 0.1);
@@ -584,7 +682,7 @@
     "Opening monster ............. [FAILED]",
     "Summoning Cai ............... [OK]",
     "",
-    "Starting about_me.exe_"
+    "Starting about_me_"
   ];
   var bootDone = false;
   function finishBoot(){
@@ -614,15 +712,15 @@
   document.getElementById("enterBtn").focus();
 
   /* ===== WINDOWS: minimise, maximise, close, drag ===== */
-  var dialog = document.getElementById("dialog"), pendingClose = null, z = 5;
-  function task(win){ return document.querySelector('.task[data-win="' + win.id + '"]'); }
+  var z = 5;
+  function task(win){ return null; }
   function focusWin(win){
-    document.querySelectorAll(".window").forEach(function(w){ if (w.closest("#dialog")) return; w.classList.toggle("inactive", w !== win); });
+    document.querySelectorAll(".window").forEach(function(w){ if (!w.closest("#desktop")) return; w.classList.toggle("inactive", w !== win); });
     win.style.zIndex = ++z;
   }
-  function minimise(win){ win.classList.add("hidden"); var t = task(win); t.classList.remove("pressed"); }
-  function restore(win){ win.classList.remove("hidden"); var t = task(win); t.classList.remove("closed"); t.classList.add("pressed"); focusWin(win); if (window.innerWidth < 700) win.scrollIntoView({behavior: reduce ? "auto" : "smooth", block: "start"}); }
-  function closeWin(win){ win.classList.add("hidden"); win.classList.remove("max"); var t = task(win); t.classList.add("closed"); t.classList.remove("pressed"); }
+  function minimise(win){ win.classList.add("hidden"); }
+  function restore(win){ win.classList.remove("hidden"); focusWin(win); if (window.innerWidth < 700) win.scrollIntoView({behavior: reduce ? "auto" : "smooth", block: "start"}); }
+  function closeWin(win){ win.classList.add("hidden"); win.classList.remove("max"); }
 
   document.querySelectorAll("#desktop .window").forEach(function(win){
     win.addEventListener("pointerdown", function(){ focusWin(win); });
@@ -632,11 +730,7 @@
         var act = b.getAttribute("data-act");
         if (act === "min") minimise(win);
         if (act === "max"){ win.classList.toggle("max"); b.setAttribute("aria-label", win.classList.contains("max") ? "Restore" : "Maximise"); focusWin(win); }
-        if (act === "close"){
-          var visible = document.querySelectorAll("#desktop .window:not(.hidden)").length;
-          if (visible > 1){ closeWin(win); return; }          /* only ask on the last window */
-          pendingClose = win; dialog.classList.add("open"); play("beep"); document.getElementById("dlg-no").focus();
-        }
+        if (act === "close") closeWin(win);
       });
     });
     /* dragging by the title bar (desktop-sized screens only) */
@@ -667,22 +761,10 @@
     bar.addEventListener("dblclick", function(e){ if (!e.target.closest("button")){ win.classList.toggle("max"); focusWin(win); } });
   });
 
-  document.querySelectorAll(".task").forEach(function(t){
-    t.addEventListener("click", function(){
-      play("click");
-      var win = document.getElementById(t.getAttribute("data-win"));
-      if (win.classList.contains("hidden")) restore(win);
-      else if (win.classList.contains("inactive")) focusWin(win);
-      else minimise(win);
-    });
-  });
 
-  document.getElementById("dlg-yes").addEventListener("click", function(){ play("click"); if (pendingClose) closeWin(pendingClose); pendingClose = null; dialog.classList.remove("open"); });
-  document.getElementById("dlg-no").addEventListener("click", function(){ play("click"); pendingClose = null; dialog.classList.remove("open"); });
-  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && dialog.classList.contains("open")) document.getElementById("dlg-no").click(); });
 
   /* hover / click sounds on links */
-  document.querySelectorAll(".link, .task, .btn").forEach(function(el){
+  document.querySelectorAll(".link, .btn, .desk-icon, .start").forEach(function(el){
     el.addEventListener("mouseenter", function(){ play("hover"); });
   });
   document.querySelectorAll(".link").forEach(function(el){
@@ -701,7 +783,6 @@
   document.addEventListener("keydown", function(e){ if (e.key === "Escape" && denied.classList.contains("open")) document.getElementById("den-ok").click(); });
   /* ===== RECYCLE BIN ===== */
   var binWin = document.getElementById("win-bin"), viewer = document.getElementById("viewer");
-  document.getElementById("bin-icon").addEventListener("click", function(){ play("click"); restore(binWin); });
   document.querySelectorAll(".bin-file").forEach(function(f){
     f.addEventListener("mouseenter", function(){ play("hover"); });
     f.addEventListener("click", function(){
@@ -809,11 +890,58 @@
       }
     });
     document.getElementById("ty-new").addEventListener("click", function(){ play("click"); reset(); input.focus(); });
-    document.getElementById("typer-icon").addEventListener("click", function(){
-      play("click"); restore(document.getElementById("win-typer")); setTimeout(function(){ input.focus(); }, 50);
-    });
     reset();
   })();
+
+  /* ===== DESKTOP ICONS + START MENU ===== */
+  function openApp(id){
+    var w = document.getElementById(id); restore(w);
+    if (id === "win-typer") setTimeout(function(){ var i = document.getElementById("ty-input"); if (i) i.focus(); }, 50);
+    if (id === "win-runes") setTimeout(function(){ document.getElementById("rn-text").focus(); }, 50);
+  }
+  var startBtn = document.getElementById("start"), startMenu = document.getElementById("startmenu");
+  function toggleStart(open){
+    if (open === undefined) open = startMenu.hidden;
+    startMenu.hidden = !open; startBtn.setAttribute("aria-expanded", open);
+    if (open){ var f = startMenu.querySelector("button"); if (f) f.focus(); }
+  }
+  startBtn.addEventListener("click", function(e){ e.stopPropagation(); play("click"); toggleStart(); });
+  startMenu.addEventListener("click", function(e){ e.stopPropagation(); });
+  document.querySelectorAll("[data-open]").forEach(function(el){
+    el.addEventListener("mouseenter", function(){ play("hover"); });
+    el.addEventListener("click", function(){ play("click"); toggleStart(false); openApp(el.getAttribute("data-open")); });
+  });
+  document.getElementById("sm-shutdown").addEventListener("mouseenter", function(){ play("hover"); });
+  document.getElementById("sm-shutdown").addEventListener("click", function(){
+    toggleStart(false); play("click"); shutDown();
+  });
+  startMenu.querySelectorAll("[data-menu]").forEach(function(b){ b.addEventListener("click", function(){ toggleStart(false); }); });
+  document.addEventListener("click", function(){ if (!startMenu.hidden) toggleStart(false); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !startMenu.hidden){ toggleStart(false); startBtn.focus(); } });
+
+  /* ===== SHUT DOWN + POWER ON ===== */
+  var sd = document.getElementById("shutdown");
+  function shutDown(){
+    document.querySelectorAll("#desktop .window").forEach(closeWin);
+    sd.classList.remove("safe"); sd.hidden = false;
+    document.getElementById("sd-1").hidden = false; document.getElementById("sd-2").hidden = true;
+    play("shutdown");
+    var tasks = ["Saving soul…", "Closing the void…", "Putting the bats to bed…", "Hiding the Monster cans…", "Pretending to sleep…"], i = 0;
+    var t = setInterval(function(){ i++; if (i < tasks.length) document.getElementById("sd-task").textContent = tasks[i]; }, 550);
+    setTimeout(function(){
+      clearInterval(t);
+      document.getElementById("sd-1").hidden = true; document.getElementById("sd-2").hidden = false;
+      sd.classList.add("safe"); document.getElementById("sd-on").focus();
+    }, reduce ? 600 : 2900);
+  }
+  document.getElementById("sd-on").addEventListener("click", function(){
+    play("click"); sd.hidden = true;
+    boot.innerHTML = ""; boot.classList.remove("gone"); bootDone = false;
+    runBoot();
+    var wait = setInterval(function(){
+      if (bootDone){ clearInterval(wait); restore(document.getElementById("win-about")); }
+    }, 100);
+  });
 
   /* ===== MENUS (Help) ===== */
   var aboutBox = document.getElementById("about");
@@ -848,6 +976,30 @@
     if (aboutBox.classList.contains("open")) document.getElementById("about-ok").click();
     else closeMenus();
   });
+
+  /* ===== RUNES.EXE ===== */
+  (function(){
+    var A = "abcdefghijklmnopqrstuvwxyz";
+    var R = ["ᚨ","ᛒ","ᚲ","ᛞ","ᛖ","ᚠ","ᚷ","ᚺ","ᛁ","ᛃ","ᚴ","ᛚ","ᛗ","ᚾ","ᛟ","ᛈ","ᛩ","ᚱ","ᛊ","ᛏ","ᚢ","ᚡ","ᚹ","ᛪ","ᚤ","ᛉ"];
+    var SPACE = "᛫";
+    var toR = {}, fromR = {};
+    for (var i=0;i<26;i++){ toR[A[i]] = R[i]; fromR[R[i]] = A[i]; }
+    function encode(t){ return Array.from(t.toLowerCase()).map(function(c){ return c === " " ? SPACE : (toR[c] || c); }).join(""); }
+    function decode(t){ return Array.from(t).map(function(c){ return c === SPACE ? " " : (fromR[c] || c); }).join(""); }
+    var txt = document.getElementById("rn-text"), run = document.getElementById("rn-runes"), msg = document.getElementById("rn-msg");
+    txt.addEventListener("input", function(){ run.value = encode(txt.value); play("type"); });
+    run.addEventListener("input", function(){ txt.value = decode(run.value); play("type"); });
+    document.getElementById("rn-copy").addEventListener("click", function(){
+      play("click");
+      if (!run.value){ msg.textContent = "Nothing to copy yet. Type something first."; return; }
+      function done(){ msg.textContent = "Runes copied. Paste them anywhere."; }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(run.value).then(done, function(){ run.select(); document.execCommand("copy"); done(); });
+      else { run.select(); document.execCommand("copy"); done(); }
+    });
+    document.getElementById("rn-clear").addEventListener("click", function(){
+      play("click"); txt.value = ""; run.value = ""; msg.textContent = "Type in either box. It translates both ways."; txt.focus();
+    });
+  })();
 
   /* ===== GRAVESWEEPER ===== */
   (function(){
