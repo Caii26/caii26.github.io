@@ -315,19 +315,6 @@
   #win-specs{width:auto;max-width:calc(100vw - 32px)}
   .np-text{margin:0 4px;padding:12px 14px;background:#ece0ef;color:#0b0710;font-family:'VT323',monospace;font-size:20px;line-height:1.2;white-space:pre;overflow:auto;max-height:70vh}
   .np-text:focus-visible{outline:2px solid #9b4dff;outline-offset:-2px}
-  /* ----- souls online widget (Win95 style, like the other windows) ----- */
-  .souls-widget{position:fixed;top:16px;right:16px;z-index:2;width:222px;max-width:none}
-  .souls-widget[hidden]{display:none}
-  .souls-widget .titlebar{cursor:default}
-  .sw-panel{margin:3px 4px 0;background:var(--panel);display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 10px}
-  .sw-lcd{font-size:30px;padding:0;background:none;letter-spacing:3px;text-shadow:0 0 6px rgba(229,138,214,.6)}
-  .sw-ghost{animation:swbob 3.2s ease-in-out infinite;filter:drop-shadow(0 0 5px rgba(229,138,214,.4))}
-  .souls-widget .statusbar span:first-child{display:flex;align-items:center;justify-content:center;gap:6px}
-  .sw-dot{display:inline-block;width:6px;height:6px;background:#e58ad6;box-shadow:0 0 5px #e58ad6;animation:swpulse 2.4s ease-in-out infinite}
-  @keyframes swpulse{0%,100%{opacity:1}50%{opacity:.3}}
-  @keyframes swbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-  @media (prefers-reduced-motion:reduce){.sw-dot,.sw-ghost{animation:none}}
-  @media (max-width:700px){ .souls-widget{position:relative;top:auto;right:auto;margin:18px auto 0} }
 </style>
 </head>
 <body>
@@ -392,15 +379,6 @@
   <span>graveyard.bin</span>
 </button>
 </div>
-
-<aside class="souls-widget window raised" id="souls" aria-live="polite" hidden>
-  <div class="titlebar"><span><svg width="11" height="13" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 15V7a6 6 0 0 1 12 0v8l-2-1.5L9 15l-2-1.5L5 15l-2-1.5z" fill="#fff"/><rect x="4" y="6" width="2" height="2" fill="#4a1a63"/><rect x="8" y="6" width="2" height="2" fill="#4a1a63"/></svg>souls_online</span></div>
-  <div class="sw-panel sunken">
-    <svg class="sw-ghost" width="26" height="30" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 15V7a6 6 0 0 1 12 0v8l-2-1.5L9 15l-2-1.5L5 15l-2-1.5z" fill="#ece0ef"/><rect x="4" y="6" width="2" height="2" fill="#0b0710"/><rect x="8" y="6" width="2" height="2" fill="#0b0710"/><rect x="5.5" y="9.5" width="3" height="1" fill="#e58ad6"/></svg>
-    <span class="sw-count sw-lcd" id="souls-n">001</span>
-  </div>
-  <div class="statusbar"><span><i class="sw-dot" aria-hidden="true"></i><span id="souls-label">viewing right now</span></span></div>
-</aside>
 
 <div class="desktop" id="desktop">
 
@@ -1598,30 +1576,6 @@ monster.dll . always loaded</pre>
       play("click"); clearGame(); track.classList.remove("on"); pipesEl.style.display = ""; judge("", ""); msg.textContent = "Stopped. Pick a song and press play, or just play freely.";
     });
     showBest();
-  })();
-  /* ===== SOULS ONLINE (live visitor count through the Cloudflare Worker) ===== */
-  (function(){
-    var URL_P = "https://website-messages.kingcai2006.workers.dev/presence";
-    var id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now().toString(36) + Math.random().toString(36).slice(2, 12));
-    var box = document.getElementById("souls"), num = document.getElementById("souls-n"), lab = document.getElementById("souls-label");
-    function show(n){
-      num.textContent = ("00" + Math.min(n, 999)).slice(-3);
-      lab.textContent = n === 1 ? "just you viewing" : "viewing right now";
-      box.setAttribute("aria-label", n + (n === 1 ? " soul" : " souls") + " here right now");
-      box.hidden = false;
-    }
-    function ping(){
-      if (document.hidden) return;
-      fetch(URL_P, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify({ id: id }) })
-        .then(function(r){ return r.json(); })
-        .then(function(d){ if (d && d.ok) show(d.count); })
-        .catch(function(){});                     /* if it fails, the readout just stays hidden */
-    }
-    ping(); setInterval(ping, 30000);
-    document.addEventListener("visibilitychange", function(){ if (!document.hidden) ping(); });
-    window.addEventListener("pagehide", function(){
-      try { navigator.sendBeacon(URL_P, JSON.stringify({ id: id, leave: true })); } catch(e){}
-    });
   })();
 
   /* ===== GRAVESWEEPER ===== */
