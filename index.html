@@ -294,6 +294,40 @@
   .og-note.black{background:#e58ad6;width:18px}
   .og-note.hit{opacity:0}
   .og-note.missed{background:#45305a;color:#7a6a8a}
+  /* ----- soft name glow ----- */
+  h1{text-shadow:0 0 4px rgba(229,138,214,.5),0 0 12px rgba(155,77,255,.3)}
+  .titlebar span{text-shadow:0 0 4px rgba(229,138,214,.4)}
+  /* ----- halo / horns over the profile picture ----- */
+  .pic-wrap{position:relative;display:inline-block;flex-shrink:0;margin-top:14px}
+  .pic-halo{position:absolute;left:50%;top:-14px;transform:translateX(-50%);filter:drop-shadow(0 0 4px rgba(255,255,255,.75));animation:halo 3s ease-in-out infinite}
+  .pic-horns{position:absolute;left:50%;top:-22px;transform:translateX(-50%);filter:drop-shadow(0 0 1px rgba(236,224,239,.9)) drop-shadow(0 0 4px rgba(155,77,255,.6))}
+  @keyframes halo{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-3px)}}
+  /* ----- holographic foil omen card ----- */
+  .card.foil{position:relative;overflow:hidden;--mx:50%;--my:50%}
+  .card.foil::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.16;
+    background:linear-gradient(115deg,transparent 20%,#ff8ad8 30%,#8ad8ff 40%,#b8ff8a 50%,#ffe38a 60%,#c08aff 70%,transparent 80%);
+    background-size:250% 250%;background-position:var(--mx) var(--my);transition:opacity .2s}
+  .card.foil::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.15;
+    background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,.8),transparent 45%)}
+  .card.foil:hover::after{opacity:.3}
+  @media (prefers-reduced-motion:reduce){.pic-halo{animation:none}}
+  /* ----- pc_specs.txt notepad ----- */
+  #win-specs{width:auto;max-width:calc(100vw - 32px)}
+  .np-text{margin:0 4px;padding:12px 14px;background:#ece0ef;color:#0b0710;font-family:'VT323',monospace;font-size:20px;line-height:1.2;white-space:pre;overflow:auto;max-height:70vh}
+  .np-text:focus-visible{outline:2px solid #9b4dff;outline-offset:-2px}
+  /* ----- souls online widget (Win95 style, like the other windows) ----- */
+  .souls-widget{position:fixed;top:16px;right:16px;z-index:2;width:222px;max-width:none}
+  .souls-widget[hidden]{display:none}
+  .souls-widget .titlebar{cursor:default}
+  .sw-panel{margin:3px 4px 0;background:var(--panel);display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 10px}
+  .sw-lcd{font-size:30px;padding:0;background:none;letter-spacing:3px;text-shadow:0 0 6px rgba(229,138,214,.6)}
+  .sw-ghost{animation:swbob 3.2s ease-in-out infinite;filter:drop-shadow(0 0 5px rgba(229,138,214,.4))}
+  .souls-widget .statusbar span:first-child{display:flex;align-items:center;justify-content:center;gap:6px}
+  .sw-dot{display:inline-block;width:6px;height:6px;background:#e58ad6;box-shadow:0 0 5px #e58ad6;animation:swpulse 2.4s ease-in-out infinite}
+  @keyframes swpulse{0%,100%{opacity:1}50%{opacity:.3}}
+  @keyframes swbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  @media (prefers-reduced-motion:reduce){.sw-dot,.sw-ghost{animation:none}}
+  @media (max-width:700px){ .souls-widget{position:relative;top:auto;right:auto;margin:18px auto 0} }
 </style>
 </head>
 <body>
@@ -325,6 +359,10 @@
   <svg width="44" height="40" viewBox="0 0 22 20" aria-hidden="true"><path d="M1 3h7l2 2h11v14H1z" fill="#c4b2cf" stroke="#000"/><path d="M1 7h20" stroke="#000"/><path d="M10 10h2v2h2v2h-2v3h-2v-3H8v-2h2z" fill="#4a1a63"/></svg>
   <span>projects</span>
 </button>
+<button type="button" class="desk-icon" data-open="win-specs" aria-label="Open pc_specs.txt">
+  <svg width="36" height="42" viewBox="0 0 18 21" aria-hidden="true"><path d="M1 1h11l5 5v14H1z" fill="#ece0ef" stroke="#000"/><path d="M12 1v5h5" fill="#c4b2cf" stroke="#000"/><path d="M1 1h11v2H1z" fill="#4a1a63"/><path d="M4 8h10M4 10.5h10M4 13h10M4 15.5h7" stroke="#5c3f6e"/><path d="M3 5.5h1M3 8h0" stroke="#e58ad6"/></svg>
+  <span>pc_specs.txt</span>
+</button>
 <button type="button" class="desk-icon" data-open="win-sweeper" aria-label="Open gravesweeper.exe">
   <svg width="40" height="40" viewBox="0 0 20 20" aria-hidden="true"><rect x="1" y="1" width="18" height="18" fill="#1a1220" stroke="#000"/><path d="M1 7h18M1 13h18M7 1v18M13 1v18" stroke="#5c3f6e"/><path d="M8.5 12V9a1.5 1.5 0 0 1 3 0v3z" fill="#c4b2cf"/><path d="M3 4h1M16 15h1M15 4h1" stroke="#e58ad6" stroke-width="1.5"/></svg>
   <span>gravesweeper.exe</span>
@@ -355,6 +393,15 @@
 </button>
 </div>
 
+<aside class="souls-widget window raised" id="souls" aria-live="polite" hidden>
+  <div class="titlebar"><span><svg width="11" height="13" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 15V7a6 6 0 0 1 12 0v8l-2-1.5L9 15l-2-1.5L5 15l-2-1.5z" fill="#fff"/><rect x="4" y="6" width="2" height="2" fill="#4a1a63"/><rect x="8" y="6" width="2" height="2" fill="#4a1a63"/></svg>souls_online</span></div>
+  <div class="sw-panel sunken">
+    <svg class="sw-ghost" width="26" height="30" viewBox="0 0 14 16" aria-hidden="true"><path d="M1 15V7a6 6 0 0 1 12 0v8l-2-1.5L9 15l-2-1.5L5 15l-2-1.5z" fill="#ece0ef"/><rect x="4" y="6" width="2" height="2" fill="#0b0710"/><rect x="8" y="6" width="2" height="2" fill="#0b0710"/><rect x="5.5" y="9.5" width="3" height="1" fill="#e58ad6"/></svg>
+    <span class="sw-count sw-lcd" id="souls-n">001</span>
+  </div>
+  <div class="statusbar"><span><i class="sw-dot" aria-hidden="true"></i><span id="souls-label">viewing right now</span></span></div>
+</aside>
+
 <div class="desktop" id="desktop">
 
   <!-- ===================== ABOUT ME WINDOW ===================== -->
@@ -370,7 +417,11 @@
     <div class="menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span class="mwrap"><button class="mbtn" aria-haspopup="menu" aria-expanded="false"><u>H</u>elp</button><span class="mdrop raised" role="menu" hidden><button role="menuitem" data-menu="about">About this page…</button><button role="menuitem" data-menu="contact">Contact Cai</button></span></span></div>
     <div class="panel sunken">
       <div class="profile">
-        <img class="pic" src="pfp.png" alt="Profile picture">
+        <span class="pic-wrap">
+          <img class="pic" src="pfp.png" alt="Profile picture">
+          <svg class="pic-halo" id="pic-halo" width="64" height="18" viewBox="0 0 32 9" aria-hidden="true" shape-rendering="crispEdges"><path d="M8 1h16v1h3v1h2v3h-2v1h-3v1H8V7H5V6H3V3h2V2h3z" fill="#ffffff"/><path d="M9 3h14v1h3v1h-3v1H9V5H6V4h3z" fill="#0b0710"/></svg>
+          <img class="pic-horns" id="pic-horns" src="data:image/png;base64,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" width="120" height="38" alt="" aria-hidden="true" style="display:none">
+        </span>
         <div style="display:flex;flex-direction:column;gap:6px">
           <h1>Cai</h1>
           <p class="sub">Any · UK</p>
@@ -386,6 +437,12 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 6l4 6 5-4-2 10H5L3 8l5 4z"/></svg>
           <span>Steam</span><small>enter †</small>
         </a>
+        <!-- VRChat: to use VRChat's official logo, replace the <svg>...</svg> below with
+             <img src="vrchat.png" width="22" height="22" alt=""> and upload vrchat.png next to index.html -->
+        <a class="link raised" href="https://vrchat.com/home/user/usr_52a00d3c-9ac9-4c43-a58e-1ca5e859d94b" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/><path d="M5.5 6.5c4 2 9 2 13 0M5.5 17.5c4-2 9-2 13 0"/></svg>
+          <span>VRChat</span><small>enter †</small>
+        </a>
         <a class="link raised" href="https://discord.com/users/239824816734076928" target="_blank" rel="noopener">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>
           <span>Discord</span><small>enter †</small>
@@ -396,7 +453,7 @@
         </a>
       </fieldset>
     </div>
-    <div class="statusbar"><span>3 soul(s) bound</span><span>† est. 2026</span></div>
+    <div class="statusbar"><span>4 soul(s) bound</span><span>† est. 2026</span></div>
   </section>
 
   <!-- ===================== PROJECTS WINDOW ===================== -->
@@ -473,7 +530,7 @@
     <div class="menu"><span><u>F</u>ile</span><span><u>F</u>ate</span></div>
     <div class="panel sunken omen-panel">
       <p class="omen-date" id="omen-date">Your omen for today</p>
-      <div class="card raised" id="omen-card">
+      <div class="card raised foil" id="omen-card">
         <span class="card-num" id="omen-num">XVI</span>
         <svg class="card-art" id="omen-art" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#e58ad6" stroke-width="1.4" aria-hidden="true"></svg>
         <span class="card-name" id="omen-name">The Tower</span>
@@ -630,6 +687,41 @@
     </div>
     <div class="statusbar"><span>2 octaves of doom</span><span>† Bach approved</span></div>
   </section>
+
+  <!-- ===================== PC SPECS (edit the text between <pre> and </pre>) ===================== -->
+  <section class="window raised hidden" id="win-specs" aria-label="pc_specs.txt">
+    <div class="titlebar">
+      <span><svg width="11" height="13" viewBox="0 0 11 13" aria-hidden="true"><path d="M.5.5h7l3 3v9H.5z" fill="#fff"/><path d="M2.5 5h6M2.5 7h6M2.5 9h4" stroke="#4a1a63"/></svg>pc_specs.txt - Notepad</span>
+      <div class="tb-btns">
+        <button class="raised" data-act="min" aria-label="Minimise">_</button>
+        <button class="raised" data-act="max" aria-label="Maximise">□</button>
+        <button class="raised" data-act="close" aria-label="Close">×</button>
+      </div>
+    </div>
+    <div class="menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span>F<u>o</u>rmat</span><span><u>V</u>iew</span></div>
+    <pre class="np-text sunken" tabindex="0" aria-label="PC specs">========================================
+            CAI&#x27;S PC SPECS
+========================================
+
+CPU ......... AMD Ryzen 7 9800X3D
+GPU ......... ASUS ROG Astral RTX 5090 OC
+RAM ......... 64GB DDR5 6000MHz
+STORAGE ..... 3TB SSD
+
+MONITOR ..... LG 27&quot; 1440p 480Hz
+
+VR .......... Valve Index
+TRACKERS .... 3x Vive Tracker 3.0
+
+KEYBOARD .... Wooting 60HE
+MOUSE ....... Logitech Pro X2 Superstrike
+WHEEL ....... Thrustmaster T150 (T-GT Edition)
+
+----------------------------------------
+sleep.exe ... not installed
+monster.dll . always loaded</pre>
+    <div class="statusbar"><span>Ln 1, Col 1</span><span>† UTF-8</span></div>
+  </section>
 </div>
 
 <!-- ===================== CLOSE DIALOG ===================== -->
@@ -686,6 +778,7 @@
       <button role="menuitem" data-open="win-about"><svg viewBox="0 0 20 22" aria-hidden="true"><rect x="1" y="1" width="18" height="20" fill="#1a1220" stroke="#000"/><rect x="2" y="2" width="16" height="4" fill="#4a1a63"/><rect x="4" y="8" width="6" height="6" fill="#c4b2cf"/><path d="M12 9h5M12 11h4M4 16h13M4 18h10" stroke="#e58ad6"/></svg><span>about_me</span></button>
       <button role="menuitem" data-open="win-msg"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 3h16v10H9l-4 4v-4H2z" fill="#c4b2cf" stroke="#000"/><rect x="5.5" y="7.2" width="2" height="2" fill="#4a1a63"/><rect x="9" y="7.2" width="2" height="2" fill="#4a1a63"/><rect x="12.5" y="7.2" width="2" height="2" fill="#4a1a63"/></svg><span>pigeon.exe</span></button>
       <button role="menuitem" data-open="win-projects"><svg viewBox="0 0 22 20" aria-hidden="true"><path d="M1 3h7l2 2h11v14H1z" fill="#c4b2cf" stroke="#000"/><path d="M1 7h20" stroke="#000"/><path d="M10 10h2v2h2v2h-2v3h-2v-3H8v-2h2z" fill="#4a1a63"/></svg><span>projects</span></button>
+      <button role="menuitem" data-open="win-specs"><svg viewBox="0 0 18 21" aria-hidden="true"><path d="M1 1h11l5 5v14H1z" fill="#ece0ef" stroke="#000"/><path d="M12 1v5h5" fill="#c4b2cf" stroke="#000"/><path d="M1 1h11v2H1z" fill="#4a1a63"/><path d="M4 8h10M4 10.5h10M4 13h10M4 15.5h7" stroke="#5c3f6e"/><path d="M3 5.5h1M3 8h0" stroke="#e58ad6"/></svg><span>pc_specs.txt</span></button>
       <button role="menuitem" data-open="win-sweeper"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="1" y="1" width="18" height="18" fill="#1a1220" stroke="#000"/><path d="M1 7h18M1 13h18M7 1v18M13 1v18" stroke="#5c3f6e"/><path d="M8.5 12V9a1.5 1.5 0 0 1 3 0v3z" fill="#c4b2cf"/><path d="M3 4h1M16 15h1M15 4h1" stroke="#e58ad6" stroke-width="1.5"/></svg><span>gravesweeper.exe</span></button>
       <button role="menuitem" data-open="win-omen"><svg viewBox="0 0 16 22" aria-hidden="true"><rect x="1" y="1" width="14" height="20" fill="#1a1220" stroke="#c4b2cf"/><rect x="3" y="3" width="10" height="16" fill="none" stroke="#4a1a63"/><path d="M8 6l1.2 3 3 .2-2.3 2 .8 3L8 12.6 5.3 14.2l.8-3-2.3-2 3-.2z" fill="#e58ad6"/></svg><span>daily_omen.exe</span></button>
       <button role="menuitem" data-open="win-typer"><svg viewBox="0 0 22 20" aria-hidden="true"><rect x="1" y="4" width="20" height="13" fill="#c4b2cf" stroke="#000"/><path d="M4 8h2M8 8h2M12 8h2M16 8h2M4 11h2M8 11h2M12 11h2M16 11h2M6 14h10" stroke="#2e1a3a" stroke-width="1.5"/><path d="M11 4V1h4" stroke="#c4b2cf" fill="none"/></svg><span>typer.exe</span></button>
@@ -749,6 +842,24 @@
     document.getElementById("status").textContent = "> status: " + text + "_";
   }
   updateStatus(); setInterval(updateStatus, 60000);
+
+  /* ===== HALO BY DAY, HORNS AFTER MIDNIGHT (UK time) ===== */
+  function updateHalo(){
+    var h = parseInt(ukTime().slice(0,2),10), night = h < 6;
+    document.getElementById("pic-halo").style.display = night ? "none" : "";
+    document.getElementById("pic-horns").style.display = night ? "" : "none";
+  }
+  updateHalo(); setInterval(updateHalo, 60000);
+  /* ===== FOIL SHIMMER FOLLOWS THE MOUSE ===== */
+  (function(){
+    var card = document.getElementById("omen-card");
+    card.addEventListener("pointermove", function(e){
+      var r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", ((e.clientX - r.left) / r.width * 100) + "%");
+      card.style.setProperty("--my", ((e.clientY - r.top) / r.height * 100) + "%");
+    });
+    card.addEventListener("pointerleave", function(){ card.style.setProperty("--mx","50%"); card.style.setProperty("--my","50%"); });
+  })();
 
   /* ===== GLITCHING CLOCK: real UK time, sometimes glitches to 09:99 ===== */
   var clock = document.getElementById("clock"), glitching = false;
@@ -1158,7 +1269,7 @@
         els.forEach(function(el){
           var icon = el.classList.contains("desk-icon"), j = icon ? 9 : 4, r = icon ? 25 : 2.5;
           el.style.transform = "translate(" + ((Math.random()-.5)*j*2) + "px," + ((Math.random()-.5)*j*2) + "px) rotate(" + ((Math.random()-.5)*r*2) + "deg)";
-          if (icon) el.style.filter = Math.random() < .25 ? "invert(1) hue-rotate(90deg)" : "";
+          if (icon) el.style.filter = "hue-rotate(" + Math.round(Math.sin((t - fStart) / 400) * 70) + "deg) brightness(" + (1 + Math.sin((t - fStart) / 400) * 0.15).toFixed(2) + ")";   /* slow colour pulse, no strobing */
         });
         if (t - fStart < 1300) requestAnimationFrame(freak);
         else { els.forEach(function(el){ el.style.filter = ""; }); drop(); }
@@ -1488,6 +1599,31 @@
     });
     showBest();
   })();
+  /* ===== SOULS ONLINE (live visitor count through the Cloudflare Worker) ===== */
+  (function(){
+    var URL_P = "https://website-messages.kingcai2006.workers.dev/presence";
+    var id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now().toString(36) + Math.random().toString(36).slice(2, 12));
+    var box = document.getElementById("souls"), num = document.getElementById("souls-n"), lab = document.getElementById("souls-label");
+    function show(n){
+      num.textContent = ("00" + Math.min(n, 999)).slice(-3);
+      lab.textContent = n === 1 ? "just you viewing" : "viewing right now";
+      box.setAttribute("aria-label", n + (n === 1 ? " soul" : " souls") + " here right now");
+      box.hidden = false;
+    }
+    function ping(){
+      if (document.hidden) return;
+      fetch(URL_P, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify({ id: id }) })
+        .then(function(r){ return r.json(); })
+        .then(function(d){ if (d && d.ok) show(d.count); })
+        .catch(function(){});                     /* if it fails, the readout just stays hidden */
+    }
+    ping(); setInterval(ping, 30000);
+    document.addEventListener("visibilitychange", function(){ if (!document.hidden) ping(); });
+    window.addEventListener("pagehide", function(){
+      try { navigator.sendBeacon(URL_P, JSON.stringify({ id: id, leave: true })); } catch(e){}
+    });
+  })();
+
   /* ===== GRAVESWEEPER ===== */
   (function(){
     var N = 9, GRAVES = 10, grid = document.getElementById("sw-grid");
